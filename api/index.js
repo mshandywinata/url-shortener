@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 // const cors = require('cors')
 const mongoose = require('mongoose')
-const ShortUrl = require('./models/shortUrl')
+const ShortUrl = require('../models/shortUrl')
 const app = express()
 
 app.set('view engine', 'ejs')
