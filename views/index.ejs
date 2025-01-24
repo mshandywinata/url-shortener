@@ -19,24 +19,31 @@
                     <button type="submit" class="btn btn-success">Shorten</button>
                 </form>
 
-            <table class="table table-striped table-responsive">
-                <thead>
-                    <tr>
-                        <th>Long URL</th>
-                        <th>Short URL</th>
-                        <th>Clicked</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% shortUrls.forEach(shortUrl => { %>
+            <div class="table-responsive">
+                    <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <td><a href="<%= shortUrl.long %>"><%= shortUrl.long %></td>
-                            <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></td>
-                            <td><%= shortUrl.clicked %></td>
+                            <th>Long URL</th>
+                            <th>Short URL</th>
+                            <th>Clicked</th>
                         </tr>
-                    <% }) %>
-                </tbody>
-            </table>
+                    </thead>
+                        <% shortUrls.forEach(shortUrl => { %>
+                            <tr>
+                                <td><a href="<%= shortUrl.long %>"><%= shortUrl.long %></td>
+                                <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></td>
+                                <td><%= shortUrl.clicked %></td>
+                                <td>
+                                    <form action="/deleteUrl" method="POST">
+                                        <input type="hidden" name="shortUrl" value="<%= shortUrl.short %>">
+                                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>

@@ -1,8 +1,7 @@
 require('dotenv').config()
 const express = require('express')
-// const cors = require('cors')
 const mongoose = require('mongoose')
-const ShortUrl = require('../models/shortUrl')
+const ShortUrl = require('./models/shortUrl')
 const app = express()
 
 app.set('view engine', 'ejs')
@@ -20,6 +19,11 @@ mongoose.connect(process.env.MONGO_URI, {
 app.get('/', async (req, res) => {
     const shortUrls = await ShortUrl.find()
     res.render('index', {shortUrls: shortUrls})
+})
+
+app.post('/deleteUrl', async (req, res) => {
+    await ShortUrl.findOneAndDelete({short: req.body.shortUrl})
+    res.redirect('/')
 })
 
 app.post('/shortUrl', async (req, res) => {
