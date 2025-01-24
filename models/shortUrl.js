@@ -15,6 +15,26 @@ const shortUrlSchema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 0
+    },
+    date: {
+        type: String,
+        required: true,
+        default: () => {
+            const now = new Date()
+            const months = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+            return `${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`
+        }
+    },
+    time: {
+        type: String,
+        required: true,
+        default: () => {
+            const now = new Date()
+            return `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
+        }
     }
 })
 

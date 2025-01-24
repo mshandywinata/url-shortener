@@ -26,6 +26,8 @@
                             <th>Long URL</th>
                             <th>Short URL</th>
                             <th>Clicked</th>
+                            <th>Latest Modified</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                         <% shortUrls.forEach(shortUrl => { %>
@@ -33,6 +35,7 @@
                                 <td><a href="<%= shortUrl.long %>"><%= shortUrl.long %></td>
                                 <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></td>
                                 <td><%= shortUrl.clicked %></td>
+                                <td><%= shortUrl.date %><span class="badge rounded-pill text-bg-info mx-2"><%= shortUrl.time %></span></td>
                                 <td>
                                     <form action="/deleteUrl" method="POST">
                                         <input type="hidden" name="shortUrl" value="<%= shortUrl.short %>">
